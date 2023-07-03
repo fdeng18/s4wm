@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="S4WM is the first S4-based world model. It exhibits superior long-term memory capabilities and enhanced training efficiency compared to existing world models based on RNNs and Transformers."
+    />
+    <meta
+      name="keywords"
+      content="S4WM, structured state space, recurrent state space model, transformer world model, DreamerV3, TransDreamer"
+    />
+    <title>S4WM</title>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+    />
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="./static/css/index.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                Facing off World Model Backbones:<br />
+                RNNs, Transformers, and S4
+              </h1>
+              <div class="is-size-4 publication-authors">
+                <span class="author-block">
+                  <a
+                    href="https://scholar.google.com/citations?hl=en&user=F-V72fUAAAAJ&view_op=list_works&sortby=pubdate"
+                    >Fei Deng</a
+                  ><sup>1</sup>,</span
+                >
+                <span class="author-block">
+                  <a
+                    href="https://scholar.google.com/citations?hl=en&user=o9l_sIAAAAAJ&view_op=list_works&sortby=pubdate"
+                    >Junyeong Park</a
+                  ><sup>2</sup>,</span
+                >
+                <span class="author-block">
+                  <a href="https://mlml.kaist.ac.kr/sungjinahn">Sungjin Ahn</a
+                  ><sup>2</sup>
+                </span>
+              </div>
+
+              <div class="is-size-4 publication-authors">
+                <span class="author-block"
+                  ><sup>1</sup>Rutgers University,</span
+                >
+                <span class="author-block"><sup>2</sup>KAIST</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- PDF Link. -->
+                  <span class="link-block">
+                    <a
+                      href=""
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                  <!-- Code Link. -->
+                  <span class="link-block">
+                    <a
+                      href=""
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code (Coming Soon)</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-light is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="item item-four-rooms">
+              <video
+                poster=""
+                id="four-rooms"
+                autoplay
+                controls
+                muted
+                loop
+                playsinline
+                height="100%"
+              >
+                <source src="./static/videos/four_rooms.mp4" type="video/mp4" />
+              </video>
+            </div>
+            <div class="item item-distracting-memory">
+              <video
+                poster=""
+                id="distracting-memory"
+                autoplay
+                controls
+                muted
+                loop
+                playsinline
+                height="100%"
+              >
+                <source
+                  src="./static/videos/distracting_memory.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+            <div class="item item-multi-doors-keys">
+              <video
+                poster=""
+                id="multi-doors-keys"
+                autoplay
+                controls
+                muted
+                loop
+                playsinline
+                height="100%"
+              >
+                <source
+                  src="./static/videos/multi_doors_keys.mp4"
+                  type="video/mp4"
+                />
+              </video>
+            </div>
+          </div>
+          <div class="content is-size-5 has-text-justified">
+            <p>
+              <br />
+              We propose the first S4-based world model called S4WM, and present
+              the first comparative study of prominent world model backbones in
+              a variety of memory-demanding environments. Our findings
+              demonstrate the unparalleled long-term memory capabilities of S4WM
+              when compared with TSSM (Transformer-based) and RSSM (RNN-based),
+              two seminal world models.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Abstract. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-max-desktop">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content is-size-5 has-text-justified">
+              <p>
+                World models are a fundamental component in model-based
+                reinforcement learning (MBRL) agents. To perform temporally
+                extended and consistent simulations of the future in partially
+                observable environments, world models need to possess long-term
+                memory. However, state-of-the-art MBRL agents, such as Dreamer,
+                predominantly employ recurrent neural networks (RNNs) as their
+                world model backbone, which have limited memory capacity. In
+                this paper, we seek to explore alternative world model backbones
+                for improving long-term memory. In particular, we investigate
+                the effectiveness of Transformers and Structured State Space
+                Sequence (S4) models, motivated by their remarkable ability to
+                capture long-range dependencies in low-dimensional sequences and
+                their complementary strengths. We propose S4WM, the first
+                S4-based world model that can generate high-dimensional image
+                sequences through latent imagination. Furthermore, we
+                extensively compare RNN-, Transformer-, and S4-based world
+                models across four sets of environments, which we have
+                specifically tailored to assess crucial memory capabilities of
+                world models, including long-term imagination, context-dependent
+                recall, reward prediction, and memory-based reasoning. Our
+                findings demonstrate that S4WM outperforms Transformer-based
+                world models in terms of long-term memory, while exhibiting
+                greater efficiency during training and imagination. These
+                results pave the way for the development of stronger MBRL
+                agents.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Abstract. -->
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Method. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-max-desktop">
+            <h2 class="title is-3">Method</h2>
+            <img src="./static/images/s4wm.png" alt="S4WM Architecture" />
+            <div class="content is-size-5 has-text-justified">
+              <p>
+                <br />
+                S4WM efficiently models the long-range dependencies of
+                environment dynamics in a compact latent space, using a stack of
+                S4 blocks. This crucially allows fully parallelized training and
+                fast imagination and planning. We also find that adding the
+                final MLP in S4 blocks can improve generation quality.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Method. -->
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Four Rooms. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-max-desktop">
+            <h2 class="title is-3">Long-Term Imagination in Four Rooms</h2>
+            <img
+              src="./static/images/four_rooms.png"
+              alt="Long-Term Imagination in Four Rooms"
+            />
+            <div class="content is-size-5 has-text-justified">
+              <p>
+                <br />
+                S4WM demonstrates superior generation quality for up to 500
+                steps, with only minor errors in object positions. RSSM and TSSM
+                make many mistakes, struggling to memorize the objects and wall
+                colors.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Four Rooms. -->
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Distracting Memory. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-max-desktop">
+            <h2 class="title is-3">Reward Prediction in Distracting Memory</h2>
+            <img
+              src="./static/images/reward_prediction.png"
+              alt="Reward Prediction in Distracting Memory"
+            />
+            <img
+              src="./static/images/distracting_memory.png"
+              alt="Imagination in Distracting Memory"
+            />
+            <div class="content is-size-5 has-text-justified">
+              <p>
+                <br />
+                S4WM is able to accurately predict rewards within imagination.
+                TSSM has limited success when observing the full sequence, but
+                fails to imagine future rewards accurately. RSSM completely
+                fails, and its reward prediction is close to random guessing.
+                Our visualization of model imagination reveals that the failure
+                of TSSM and RSSM is mainly due to their inability to keep track
+                of the agent's position.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Distracting Memory. -->
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Multi Doors Keys. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-max-desktop">
+            <h2 class="title is-3">
+              Memory-Based Reasoning in Multi Doors Keys
+            </h2>
+            <img
+              src="./static/images/door_state_prediction.png"
+              alt="Door State Prediction in Multi Doors Keys"
+              width="75%"
+            />
+            <img
+              src="./static/images/multi_doors_keys.png"
+              alt="Imagination in Multi Doors Keys"
+            />
+            <div class="content is-size-5 has-text-justified">
+              <p>
+                <br />
+                S4WM is able to keep updating its memory when a key is picked up
+                or consumed, leading to accurate predictions of future door
+                states (measured by generation MSE), even when there are many
+                keys.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Multi Doors Keys. -->
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <p>
+            This website is based on the
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            template, licensed under a
+            <a
+              rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/"
+              >Creative Commons Attribution-ShareAlike 4.0 International
+              License</a
+            >.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
