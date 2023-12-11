@@ -38,7 +38,7 @@
           <div class="columns is-centered">
             <div class="column has-text-centered">
               <h1 class="title is-1 publication-title">
-                Facing off World Model Backbones:<br />
+                Facing Off World Model Backbones:<br />
                 RNNs, Transformers, and S4
               </h1>
               <div class="is-size-4 publication-authors">
@@ -157,12 +157,14 @@
           <div class="content is-size-5 has-text-justified">
             <p>
               <br />
-              We propose the first S4-based world model called S4WM, and present
-              the first comparative study of prominent world model backbones in
-              a variety of memory-demanding environments. Our findings
-              demonstrate the unparalleled long-term memory capabilities of S4WM
-              when compared with TSSM (Transformer-based) and RSSM (RNN-based),
-              two seminal world models.
+              We propose S4WM, the first world model compatible with
+              parallelizable SSMs including S4 and its variants. Furthermore, we
+              present an extensive comparative study of prominent world model
+              backbones in a variety of memory-demanding environments with
+              sequence lengths of up to 2000. Our findings demonstrate the
+              unparalleled long-term memory capabilities of S4WM when compared
+              with TSSM (Transformer-based) and RSSM (RNN-based), two seminal
+              world models.
             </p>
           </div>
         </div>
@@ -178,10 +180,10 @@
             <div class="content is-size-5 has-text-justified">
               <p>
                 World models are a fundamental component in model-based
-                reinforcement learning (MBRL) agents. To perform temporally
-                extended and consistent simulations of the future in partially
-                observable environments, world models need to possess long-term
-                memory. However, state-of-the-art MBRL agents, such as Dreamer,
+                reinforcement learning (MBRL). To perform temporally extended
+                and consistent simulations of the future in partially observable
+                environments, world models need to possess long-term memory.
+                However, state-of-the-art MBRL agents, such as Dreamer,
                 predominantly employ recurrent neural networks (RNNs) as their
                 world model backbone, which have limited memory capacity. In
                 this paper, we seek to explore alternative world model backbones
@@ -189,19 +191,20 @@
                 the effectiveness of Transformers and Structured State Space
                 Sequence (S4) models, motivated by their remarkable ability to
                 capture long-range dependencies in low-dimensional sequences and
-                their complementary strengths. We propose S4WM, the first
-                S4-based world model that can generate high-dimensional image
-                sequences through latent imagination. Furthermore, we
-                extensively compare RNN-, Transformer-, and S4-based world
-                models across four sets of environments, which we have
-                specifically tailored to assess crucial memory capabilities of
-                world models, including long-term imagination, context-dependent
-                recall, reward prediction, and memory-based reasoning. Our
-                findings demonstrate that S4WM outperforms Transformer-based
-                world models in terms of long-term memory, while exhibiting
-                greater efficiency during training and imagination. These
-                results pave the way for the development of stronger MBRL
-                agents.
+                their complementary strengths. We propose S4WM, the first world
+                model compatible with parallelizable SSMs including S4 and its
+                variants. By incorporating latent variable modeling, S4WM can
+                efficiently generate high-dimensional image sequences through
+                latent imagination. Furthermore, we extensively compare RNN-,
+                Transformer-, and S4-based world models across four sets of
+                environments, which we have tailored to assess crucial memory
+                capabilities of world models, including long-term imagination,
+                context-dependent recall, reward prediction, and memory-based
+                reasoning. Our findings demonstrate that S4WM outperforms
+                Transformer-based world models in terms of long-term memory,
+                while exhibiting greater efficiency during training and
+                imagination. These results pave the way for the development of
+                stronger MBRL agents.
               </p>
             </div>
           </div>
@@ -226,7 +229,9 @@
                 environment dynamics in a compact latent space, using a stack of
                 S4 blocks. This crucially allows fully parallelized training and
                 fast imagination and planning. We also find that adding the
-                final MLP in S4 blocks can improve generation quality.
+                final MLP in S4 blocks can improve generation quality. The S4
+                layer in each block can be replaced with other parallelizable
+                SSMs such as S5.
               </p>
             </div>
           </div>
@@ -327,6 +332,34 @@
           </div>
         </div>
         <!--/ Multi Doors Keys. -->
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <!-- Offline Probing. -->
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-max-desktop">
+            <h2 class="title is-3">Offline Probing in Memory Maze</h2>
+            <img
+              src="./static/images/offline_probing.png"
+              alt="Offline Probing in Memory Maze"
+              width="80%"
+            />
+            <div class="content is-size-5 has-text-justified">
+              <p>
+                <br />
+                S4WM is a general framework compatible with S4 and its variants.
+                When instantiated with S5 (denoted S5WM), it can outperform RSSM
+                in offline probing by a large margin, achieving state-of-the-art
+                results in the Memory Maze offline probing benchmark.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!--/ Offline Probing. -->
       </div>
     </section>
 
